@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+
+{% block header %}
+
+
+{% with messages= get_flashed_messages() %}
+{% if messages %}
+{% for men in messages %}
+
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+  <p>{{messages}}</p>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+{% endfor %}
+{% endif %}
+{% endwith%}
+
+
+{% endblock%}
+
+
+{% block content %}
+
+
+<div class="container">
+
+  <div class="title">
+    <h1 class="text-uppercase text-center">Escoge alguna opción:</h1>
+
+  </div>
+
+  <div action="" class="row">
+    <div class="col-sm-4">
+      <form method="post">
+        <div class="card text-center">
+          <div class="embed-responsive embed-responsive-4by3">
+            <img src="{{url_for('static', filename='img/piedra.svg')}}" class="card-img-top embed-responsive-item"
+              alt="...">
+          </div>
+
+          <div class="card-body">
+            <h5 class="card-title">Piedra</h5>
+
+            <div class="form-group ">
+              <input type="text" class="form-control" name="pregunta" id="pregunta" autocomplete="off" hidden="true"
+                value="0">
+            </div>
+
+            <input type="submit" class="btn btn-outline-success" value="✔">
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="col-sm-4">
+      <form action=""  method="post">
+        <div class="card text-center">
+
+          <div class="embed-responsive embed-responsive-4by3">
+            <img src="{{url_for('static', filename='img/papel.svg')}}" class="card-img-top embed-responsive-item"
+              alt="...">
+          </div>
+
+
+          <div class="card-body">
+            <h5 class="card-title">Papel</h5>
+
+            <div class="form-group ">
+              <input type="text" class="form-control" name="pregunta" id="pregunta" autocomplete="off" hidden="true"
+                value="1">
+            </div>
+
+            <input type="submit" class="btn btn-outline-success" value="✔">
+          </div>
+        </div>
+      </form>
+    </div>
+
+
+    <div class="col-sm-4">
+      <form action=""  method="post">
+        <div class="card text-center">
+
+          <div class="embed-responsive embed-responsive-4by3">
+            <img src="{{url_for('static', filename='img/tijeras.svg')}}" class="card-img-top embed-responsive-item"
+              alt="...">
+          </div>
+
+
+          <div class="card-body">
+            <h5 class="card-title">Tijeras</h5>
+
+            <div class="form-group ">
+              <input type="text" class="form-control" name="pregunta" id="pregunta" autocomplete="off" hidden="true"
+                value="2">
+            </div>
+
+            <input type="submit" class="btn btn-outline-success" value="✔">
+          </div>
+        </div>
+      </form>
+    </div>
+
+
+  </div>
+
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,66 @@
+<!--Nueva Plantilla-->
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
+    <!-- google font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
+
+    <!--CSS -->
+    <link rel="stylesheet" href="{{url_for('static', filename='css/custom.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/tailwind.min.css')}}">
+
+    <!-- JQuery -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{{url_for('static', filename='css/lib/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/main.css')}}">
+
+    <!-- Bootstrap JS -->
+    <script src="{{url_for('static', filename='js/lib/jquery-3.4.1.min.js')}}"></script>
+    <script src="{{url_for('static', filename='js/lib/popper.min.js')}}"></script>
+    <script src="{{url_for('static', filename='js/lib/bootstrap.min.js')}}"></script>
+
+
+    <!-- Favicon-->
+    <link rel="shortcut icon" type="image/x-icon" href="{{url_for('static', filename='img/game.svg')}}" />
+
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+    integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+
+    <title>{% block title %} {% endblock %} Juego Base </title>
+
+</head>
+
+<body class="content">
+
+  <!--HEADER-->
+  <header>
+
+    <!--NAV-->
+    <nav class="navbar navbar-web-app navbar-expand-lg navbar-dark bg-dark fixed">
+        <p class="navbar-brand text-info font-weight-bold">Juego</p>
+    </nav>
+
+    {% block header %} {% endblock %}
+  </header>
+
+  {% block content %}
+
+
+  {% endblock %}
+
+
+</body>
+
+</html>

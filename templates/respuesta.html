@@ -1,0 +1,200 @@
+{% extends 'base.html' %}
+
+{% block header %}
+
+
+{% with messages= get_flashed_messages() %}
+{% if messages %}
+{% for men in messages %}
+
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+  <p>{{messages}}</p>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+{% endfor %}
+{% endif %}
+{% endwith%}
+
+
+{% endblock%}
+
+
+{% block content %}
+
+
+<script>
+
+var source = new EventSource("/progress");
+
+source.onmessage = function(event) {
+    $('.progress-bar').css('width', event.data+'%').attr('aria-valuenow', event.data);
+    $('.progress-bar-label').text(event.data+'%');
+
+    if(event.data == 100){
+        myFunction()
+        myFunction2()
+        source.close()
+    }
+}
+
+function myFunction() {
+
+  var x = document.getElementById("myDIV")
+ 
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+}
+
+
+function myFunction2() {
+  
+  var x = document.getElementById("spinner")
+ 
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+}
+
+
+</script>
+
+
+
+<div class="container" id="myDIV" style="display: none">
+
+  <div class="title">
+    
+
+    {% if (diccionario['resultado'] == 'Ganaste!') %}
+    <h1 class="text-uppercase text-success text-center"> {{ diccionario['resultado'] }} </h1>
+
+    {% elif (diccionario['resultado'] == 'Perdiste!') %}
+    <h1 class="text-uppercase text-danger text-center"> {{ diccionario['resultado'] }} </h1>
+
+    {% else %}
+    <h1 class="text-uppercase text-primary text-center"> {{ diccionario['resultado'] }} </h1>
+
+    {% endif %}
+
+  </div>
+
+  <div class="row">
+
+    <div class="col-sm-4">
+     
+      <div class="card text-center">
+
+  
+        <div class="embed-responsive embed-responsive-4by3">
+          <img src="{{diccionario['foto1']}}" class="card-img-top embed-responsive-item"
+            alt="...">
+        </div>
+
+
+
+        <div class="card-body">
+          <h5 class="card-title"> {{ diccionario['respuesta1'] }} </h5>
+
+          <div class="form-group ">
+            <input type="text" class="form-control" name="pregunta2" id="pregunta2" autocomplete="off" hidden="true"
+              value="2">
+          </div>
+
+        </div>
+      </div>
+  
+  </div>
+
+
+
+    <div class="col-sm-4"">
+
+        <div >
+            <img class="card-img" src="{{url_for('static', filename='img/vs.png')}}" alt="Card image">
+        </div>
+
+    </div>
+
+
+    <div class="col-sm-4">
+     
+        <div class="card text-center">
+
+          <div class="embed-responsive embed-responsive-4by3">
+            <img src="{{diccionario['foto2']}}" class="card-img-top embed-responsive-item"
+              alt="...">
+          </div>
+
+
+          <div class="card-body">
+            <h5 class="card-title"> {{ diccionario['respuesta2'] }} </h5>
+
+            <div class="form-group ">
+              <input type="text" class="form-control" name="pregunta2" id="pregunta2" autocomplete="off" hidden="true"
+                value="2">
+            </div>
+
+          </div>
+        </div>
+    
+    </div>
+
+
+  </div>
+
+  
+
+
+    {% if (diccionario['resultado'] == 'Ganaste!') %}
+    <div class="alert alert-success alert-dismissable">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+    Felicidades! <strong> {{ diccionario['respuesta1'] }}</strong> gana contra <strong> {{ diccionario['respuesta2'] }} </strong>
+    </div>
+
+    {% elif (diccionario['resultado'] == 'Perdiste!') %}
+    <div class="alert alert-danger alert-dismissable">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      Lo siento! <strong> {{ diccionario['respuesta1'] }}</strong> pierde contra <strong> {{ diccionario['respuesta2'] }} </strong>
+    </div>
+    
+
+    {% else %}
+    <div class="alert alert-primary alert-dismissable">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      Upss! <strong> {{ diccionario['respuesta1'] }}</strong> empata contra <strong> {{ diccionario['respuesta2'] }} </strong>
+    </div>
+    
+
+    {% endif %}
+
+    
+  
+
+
+</div>
+
+
+
+
+<div class="m-0 row justify-content-center" >
+<div id="spinner" style="display: block;">
+  <div class="sk-chase">
+      <div class="sk-chase-dot"></div>
+      <div class="sk-chase-dot"></div>
+      <div class="sk-chase-dot"></div>
+      <div class="sk-chase-dot"></div>
+      <div class="sk-chase-dot"></div>
+      <div class="sk-chase-dot"></div>
+  </div>
+</div>
+</div>
+
+{% endblock %}
